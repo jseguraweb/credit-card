@@ -10,7 +10,71 @@
 </head>
 
 <body>
+    <div class="container">
+        <div class="card">
+            <div id="certificate">
+                <img id="chip" src="./img/chip.png" alt="certificate">
+            </div>
+            <div id="company">
 
+            </div>
+            <div id="number">
+
+            </div>
+            <div id="card-holder">
+
+            </div>
+            <div id="expiration-date">
+
+            </div>
+        </div>
+        <form action="#">
+            <label id="name-label" for="name">Card Name
+                </br><input type="text" id="name" class="input">
+            </label>
+            <label id="number-label" for="card-number">Card Number
+                </br><input type="number" id="card-number" class="input">
+            </label>
+            <label id="month-label" for="month">Expiration Date
+                </br><input type="number" id="month" class="input" placeholder="Month" list="months" name="months"
+                    required>
+                <datalist id="months">
+                    <option value="01"></option>
+                    <option value="02"></option>
+                    <option value="03"></option>
+                    <option value="04"></option>
+                    <option value="05"></option>
+                    <option value="06"></option>
+                    <option value="07"></option>
+                    <option value="08"></option>
+                    <option value="09"></option>
+                    <option value="10"></option>
+                    <option value="11"></option>
+                    <option value="12"></option>
+                </datalist>
+            </label>
+            <label id="year-label" for="year">
+                </br><input type="number" id="year" class="input" placeholder="Year" list="years" name="years" required>
+                <datalist id="years">
+                    <option value="2020"></option>
+                    <option value="2021"></option>
+                    <option value="2022"></option>
+                    <option value="2023"></option>
+                    <option value="2024"></option>
+                    <option value="2025"></option>
+                    <option value="2026"></option>
+                    <option value="2027"></option>
+                    <option value="2028"></option>
+                    <option value="2029"></option>
+                    <option value="2030"></option>
+                </datalist>
+            </label>
+            <label id="cvv-label" for="cvv-number">CVV
+                </br><input type="number" id="cvv-number" class="input" min="001" max="999" maxlength="3">
+            </label>
+            <input id="submit" class="input" type="submit">
+        </form>
+    </div>
 
     <script src="./app.js"></script>
 </body>
