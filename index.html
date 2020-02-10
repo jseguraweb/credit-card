@@ -6,28 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Credit Card</title>
+    <link href="https://fonts.googleapis.com/css?family=Play:400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
-    <div class="container">
-        <div class="card">
-            <div id="certificate">
-                <img id="chip" src="./img/chip.png" alt="certificate">
-            </div>
-            <div id="company">
-
-            </div>
-            <div id="number">
-
-            </div>
-            <div id="card-holder">
-
-            </div>
-            <div id="expiration-date">
-
-            </div>
+    <div class="card">
+        <div id="certificate">
+            <img id="chip" src="./img/chip.png" alt="certificate">
         </div>
+        <div id="company">
+
+        </div>
+        <div id="number">
+            <span id="box-one-numbers">####</span><span id="box-two-numbers">####</span><span
+                id="box-three-numbers">####</span><span id="box-four-numbers">####</span>
+        </div>
+        <div id="card-holder">
+            <p>Card Holder</p>
+            <span id="name-space"></span>
+        </div>
+        <div id="expiration-date">
+            <p>Expires</p>
+            <span><span id="month-box">12</span> / <span id="year-box">10</span></span>
+        </div>
+    </div>
+    <div class="container">
         <form action="#">
             <label id="name-label" for="name">Card Name
                 </br><input type="text" id="name" class="input">
