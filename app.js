@@ -15,6 +15,7 @@ const yearInput = document.querySelector('#year');
 const year = document.querySelector('#year-box');
 const submit = document.querySelector('#submit');
 
+// Functions
 const selectPlaceholder = (event) => {
     if (event.target === cardNumberInput) {
         cardNumber.classList.add('selected');
@@ -28,24 +29,46 @@ const selectPlaceholder = (event) => {
         expirationDate.classList.add('selected');
         cardHolderBox.classList.remove('selected');
         cardNumber.classList.remove('selected');
-    } 
+    }
 };
 
 const insertName = () => {
-    cardHolder.innerText = cardHolderInput.value;
+    cardHolder.innerText = (cardHolderInput.value).toLocaleUpperCase();
 };
 
 const insertNumber = () => {
     // regex max 16 nrs
 };
 
-// Event Listeners
+const insertDate = (event) => {
+    event.target.addEventListener('mousedown', function(e){
+        event.target.value = '';
+    });
+    if (event.target === monthInput) {
+        month.innerText = monthInput.value;
+        // monthInput.value = '';
+    } else if (event.target === yearInput) {
+        year.innerText = (yearInput.value).substring(2);
+        // yearInput.value = '';
+    }
+};
+
+// Event Listener
+window.addEventListener('click', function(e){
+    if (e.target === document.querySelector('.card').parentElement) {
+        cardNumber.classList.remove('selected');
+        cardHolderBox.classList.remove('selected');
+        expirationDate.classList.remove('selected');
+    }
+});
 cardHolderInput.addEventListener('keyup', insertName);
 cardHolderInput.addEventListener('click', selectPlaceholder);
 cardNumberInput.addEventListener('keyup', insertNumber);
 cardNumberInput.addEventListener('click', selectPlaceholder);
 monthInput.addEventListener('click', selectPlaceholder);
+monthInput.addEventListener('keyup', insertDate);
 yearInput.addEventListener('click', selectPlaceholder);
+yearInput.addEventListener('keyup', insertDate);
 submit.addEventListener('click', function (e) {
     e.preventDefault();
 });
