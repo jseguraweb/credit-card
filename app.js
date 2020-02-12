@@ -11,6 +11,24 @@ const yearInput = document.querySelector('#year');
 const year = document.querySelector('#year-box');
 const submit = document.querySelector('#submit');
 
+// variables: card numbers
+const number1 = document.querySelector('#number1');
+const number2 = document.querySelector('#number2');
+const number3 = document.querySelector('#number3');
+const number4 = document.querySelector('#number4');
+const number5 = document.querySelector('#number5');
+const number6 = document.querySelector('#number6');
+const number7 = document.querySelector('#number7');
+const number8 = document.querySelector('#number8');
+const number9 = document.querySelector('#number9');
+const number10 = document.querySelector('#number10');
+const number11 = document.querySelector('#number11');
+const number12 = document.querySelector('#number12');
+const number13 = document.querySelector('#number13');
+const number14 = document.querySelector('#number14');
+const number15 = document.querySelector('#number15');
+const number16 = document.querySelector('#number16');
+
 // Functions
 const selectPlaceholder = (event) => {
     if (event.target === cardNumberInput) {
@@ -33,8 +51,13 @@ const insertName = () => {
 };
 
 const insertNumber = (e) => {
-    
-    
+    if (e.target.value.charAt(0) === '3' && e.target.value.charAt(1) === '4') {
+        alert('American Express');
+    } else if (e.target.value.charAt(0) === '4') {
+        alert('Visa');
+    } else if (e.target.value.charAt(0) === '5' && e.target.value.charAt(1) === '1') {
+        alert('Mastercard');
+    } 
 };
 
 const insertDate = (event) => {
