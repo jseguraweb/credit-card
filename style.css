@@ -73,9 +73,9 @@ body {
     justify-content: space-between;
 }
 
-#number span {
+#number span:nth-child(-4n+12){
     display: block;
-    letter-spacing: 0.3rem;
+    margin-right: 1rem;
 }
 
 #card-holder {

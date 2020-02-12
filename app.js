@@ -4,10 +4,6 @@ const cardHolderInput = document.querySelector('#name');
 const cardHolderBox = document.querySelector('#card-holder');
 const cardNumber = document.querySelector('#number');
 const cardNumberInput = document.querySelector('#card-number');
-const numbersFirstBox = document.querySelector('#box-one-numbers');
-const numbersSecondBox = document.querySelector('#box-two-numbers');
-const numbersThirdBox = document.querySelector('#box-three-numbers');
-const numbersFourthBox = document.querySelector('#box-four-numbers');
 const expirationDate = document.querySelector('#expiration-date');
 const monthInput = document.querySelector('#month');
 const month = document.querySelector('#month-box');
@@ -36,8 +32,9 @@ const insertName = () => {
     cardHolder.innerText = (cardHolderInput.value).toLocaleUpperCase();
 };
 
-const insertNumber = () => {
-    // regex max 16 nrs
+const insertNumber = (e) => {
+    
+    
 };
 
 const insertDate = (event) => {
