@@ -1,4 +1,5 @@
-// Variables
+// VARIABLES
+
 const cardHolder = document.querySelector('#name-space');
 const cardHolderInput = document.querySelector('#name');
 const cardHolderBox = document.querySelector('#card-holder');
@@ -29,7 +30,28 @@ const number14 = document.querySelector('#number14');
 const number15 = document.querySelector('#number15');
 const number16 = document.querySelector('#number16');
 
-// Functions
+// different banks stickers
+const company = document.querySelector('#company');
+const americanExpress = '<i class="fab fa-cc-amex bank"></i>';
+const visa = '<i class="fab fa-cc-visa bank"></i>';
+const masterCard = '<i class="fab fa-cc-mastercard bank"></i>'
+
+// FUNCTIONS
+
+// number formats in the card
+const amExFormat = () => {
+    number16.remove();
+    [number8, number12].map(el => el.classList.remove('space-right'));
+    number10.classList.add('space-right');
+};
+
+const normalFormat = () => {
+    cardNumber.appendChild(number16);
+    [number8, number12].map(el => el.classList.add('space-right'));
+    number10.classList.remove('space-right');
+};
+
+// indicate which option of the card you are editing
 const selectPlaceholder = (event) => {
     if (event.target === cardNumberInput) {
         cardNumber.classList.add('selected');
@@ -46,20 +68,28 @@ const selectPlaceholder = (event) => {
     }
 };
 
+// insert the name in the card
 const insertName = () => {
     cardHolder.innerText = (cardHolderInput.value).toLocaleUpperCase();
 };
 
+// type the number of the card
 const insertNumber = (e) => {
     if (e.target.value.charAt(0) === '3' && e.target.value.charAt(1) === '4') {
-        alert('American Express');
+        amExFormat();
+        company.innerHTML = americanExpress;
     } else if (e.target.value.charAt(0) === '4') {
-        alert('Visa');
+        normalFormat();
+        company.innerHTML = visa;
     } else if (e.target.value.charAt(0) === '5' && e.target.value.charAt(1) === '1') {
-        alert('Mastercard');
+        normalFormat();
+        company.innerHTML = masterCard;
+    } else {
+        company.innerHTML = '';
     } 
 };
 
+// type expirations date
 const insertDate = (event) => {
     event.target.addEventListener('mousedown', function(e){
         event.target.value = '';
@@ -92,3 +122,12 @@ yearInput.addEventListener('keyup', insertDate);
 submit.addEventListener('click', function (e) {
     e.preventDefault();
 });
+
+
+
+/** 
+IDEAS FOR THE FUTURE
+
+- add an option to change the background of the credit card
+*/ 
+
