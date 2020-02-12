@@ -41,7 +41,7 @@
             </label>
             <label id="month-label" for="month">Expiration Date
                 </br><input type="number" id="month" class="input" placeholder="Month" list="months" name="months"
-                    required>
+                    min="01" max="12" minlength="2" required>
                 <datalist id="months">
                     <option value="01"></option>
                     <option value="02"></option>
@@ -58,7 +58,8 @@
                 </datalist>
             </label>
             <label id="year-label" for="year">
-                </br><input type="number" id="year" class="input" placeholder="Year" list="years" name="years" required>
+                </br><input type="number" id="year" class="input" placeholder="Year" list="years" name="years"
+                    min="2020" max="2030" required>
                 <datalist id="years">
                     <option value="2020"></option>
                     <option value="2021"></option>
