@@ -51,6 +51,7 @@ const normalFormat = () => {
     cardNumber.appendChild(number16);
     [number8, number12].map(el => el.classList.add('space-right'));
     number10.classList.remove('space-right');
+    cardNumberInput.setAttribute('maxlength', '16');
 };
 
 // select which bank your card belongs
