@@ -80,7 +80,7 @@ body {
     font-size: 3.8rem;
 }
 
-#number {
+#numbers {
     grid-row: 2/3;
     grid-column: 1/-1;
     padding: 0.5rem;

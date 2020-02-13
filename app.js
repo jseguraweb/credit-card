@@ -3,7 +3,8 @@
 const cardHolder = document.querySelector('#name-space');
 const cardHolderInput = document.querySelector('#name');
 const cardHolderBox = document.querySelector('#card-holder');
-const cardNumber = document.querySelector('#number');
+const arrayCardNumbers = [...document.querySelectorAll('.number')];
+const cardNumber = document.querySelector('#numbers');
 const cardNumberInput = document.querySelector('#card-number');
 const expirationDate = document.querySelector('#expiration-date');
 const monthInput = document.querySelector('#month');
@@ -51,6 +52,23 @@ const normalFormat = () => {
     number10.classList.remove('space-right');
 };
 
+// select which bank your card belongs
+const selectBank = (e) => {
+    if (e.target.value.charAt(0) === '3' && e.target.value.charAt(1) === '4') {
+        amExFormat();
+        company.innerHTML = americanExpress;
+    } else if (e.target.value.charAt(0) === '4') {
+        normalFormat();
+        company.innerHTML = visa;
+    } else if (e.target.value.charAt(0) === '5' && e.target.value.charAt(1) === '1') {
+        normalFormat();
+        company.innerHTML = masterCard;
+    } else {
+        normalFormat();
+        company.innerHTML = '';
+    } 
+};
+
 // indicate which option of the card you are editing
 const selectPlaceholder = (event) => {
     if (event.target === cardNumberInput) {
@@ -75,18 +93,19 @@ const insertName = () => {
 
 // type the number of the card
 const insertNumber = (e) => {
-    if (e.target.value.charAt(0) === '3' && e.target.value.charAt(1) === '4') {
-        amExFormat();
-        company.innerHTML = americanExpress;
-    } else if (e.target.value.charAt(0) === '4') {
-        normalFormat();
-        company.innerHTML = visa;
-    } else if (e.target.value.charAt(0) === '5' && e.target.value.charAt(1) === '1') {
-        normalFormat();
-        company.innerHTML = masterCard;
-    } else {
-        company.innerHTML = '';
-    } 
+    e.target.addEventListener('keyup', selectBank);
+    let numbers = '';
+    numbers += cardNumberInput.value;
+    numbers = numbers.split('');
+
+    for(let i = 0; i < arrayCardNumbers.length; i++){
+        if(numbers[i]) {
+            arrayCardNumbers[i].innerText = cardNumberInput.value.charAt(i);
+        } 
+        else {
+            arrayCardNumbers[i].innerText = '#';
+        }
+    }
 };
 
 // type expirations date
@@ -130,4 +149,3 @@ IDEAS FOR THE FUTURE
 
 - add an option to change the background of the credit card
 */ 
-
