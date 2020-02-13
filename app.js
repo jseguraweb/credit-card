@@ -1,5 +1,5 @@
 // VARIABLES
-
+const card = document.querySelector('.card')
 const cardHolder = document.querySelector('#name-space');
 const cardHolderInput = document.querySelector('#name');
 const cardHolderBox = document.querySelector('#card-holder');
@@ -11,25 +11,14 @@ const monthInput = document.querySelector('#month');
 const month = document.querySelector('#month-box');
 const yearInput = document.querySelector('#year');
 const year = document.querySelector('#year-box');
+const cvvNumber = document.querySelector('#cvv-number');
 const submit = document.querySelector('#submit');
 
 // variables: card numbers
-const number1 = document.querySelector('#number1');
-const number2 = document.querySelector('#number2');
-const number3 = document.querySelector('#number3');
 const number4 = document.querySelector('#number4');
-const number5 = document.querySelector('#number5');
-const number6 = document.querySelector('#number6');
-const number7 = document.querySelector('#number7');
 const number8 = document.querySelector('#number8');
-const number9 = document.querySelector('#number9');
 const number10 = document.querySelector('#number10');
-const number11 = document.querySelector('#number11');
 const number12 = document.querySelector('#number12');
-const number13 = document.querySelector('#number13');
-const number14 = document.querySelector('#number14');
-const number15 = document.querySelector('#number15');
-const number16 = document.querySelector('#number16');
 
 // different banks stickers
 const company = document.querySelector('#company');
@@ -77,14 +66,20 @@ const selectPlaceholder = (event) => {
         cardNumber.classList.add('selected');
         cardHolderBox.classList.remove('selected');
         expirationDate.classList.remove('selected');
+        card.classList.remove('rotate');
+        frontsideCard();
     } else if (event.target === cardHolderInput) {
         cardHolderBox.classList.add('selected');
         expirationDate.classList.remove('selected');
         cardNumber.classList.remove('selected');
+        card.classList.remove('rotate');
+        frontsideCard();
     } else if (event.target === monthInput || event.target === yearInput) {
         expirationDate.classList.add('selected');
         cardHolderBox.classList.remove('selected');
         cardNumber.classList.remove('selected');
+        card.classList.remove('rotate');
+        frontsideCard();
     }
 };
 
@@ -124,6 +119,42 @@ const insertDate = (event) => {
     }
 };
 
+// frontside card
+const frontsideCard = () => {
+    card.classList.add('frontside');
+    card.classList.remove('backside');
+    document.querySelector('#certificate').style.display = 'block';
+    document.querySelector('#numbers').style.display = 'flex';
+    document.querySelector('#card-holder').style.display = 'block';
+    document.querySelector('#expiration-date').style.display = 'block';
+};
+
+// rotate to frontside
+const rotateToFrontside = () => {
+
+};
+
+// backside card
+const backsideCard = () => {
+    card.classList.add('backside');
+    card.classList.remove('frontside');
+    document.querySelector('#certificate').style.display = 'none';
+    document.querySelector('#numbers').style.display = 'none';
+    document.querySelector('#card-holder').style.display = 'none';
+    document.querySelector('#expiration-date').style.display = 'none';
+    cvvNumber.removeEventListener('click', rotateToBackside);
+    cardHolderInput.addEventListener('click', rotateToFrontside);
+    cardNumberInput.addEventListener('click', rotateToFrontside);
+    monthInput.addEventListener('click', rotateToFrontside);
+    yearInput.addEventListener('click', rotateToFrontside);
+};
+
+// rotate to backside
+const rotateToBackside = () => {
+    card.classList.add('rotate');
+    backsideCard();
+};
+
 // Event Listener
 window.addEventListener('click', function(e){
     if (e.target === document.querySelector('.card').parentElement) {
@@ -140,6 +171,7 @@ monthInput.addEventListener('click', selectPlaceholder);
 monthInput.addEventListener('keyup', insertDate);
 yearInput.addEventListener('click', selectPlaceholder);
 yearInput.addEventListener('keyup', insertDate);
+cvvNumber.addEventListener('click', rotateToBackside);
 submit.addEventListener('click', function (e) {
     e.preventDefault();
 });
