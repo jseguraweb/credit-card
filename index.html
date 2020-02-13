@@ -53,7 +53,7 @@
                 </br><input type="text" id="name" class="input">
             </label>
             <label id="number-label" for="card-number">Card Number
-                </br><input type="number" id="card-number" class="input">
+                </br><input type="tel" maxlength="16" id="card-number" class="input">
             </label>
             <label id="month-label" for="month">Expiration Date
                 </br><input type="number" id="month" class="input" placeholder="Month" list="months" name="months"
@@ -91,7 +91,7 @@
                 </datalist>
             </label>
             <label id="cvv-label" for="cvv-number">CVV
-                </br><input type="number" id="cvv-number" class="input" min="001" max="999" maxlength="3">
+                </br><input type="tel" maxlength="3" id="cvv-number" class="input">
             </label>
             <input id="submit" class="input" type="submit">
         </form>

@@ -44,6 +44,7 @@ const amExFormat = () => {
     number16.remove();
     [number8, number12].map(el => el.classList.remove('space-right'));
     number10.classList.add('space-right');
+    cardNumberInput.setAttribute('maxlength', '15');
 };
 
 const normalFormat = () => {
