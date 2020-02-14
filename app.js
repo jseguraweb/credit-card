@@ -6,7 +6,7 @@ const cardHolderInput = document.querySelector('#name');
 const cardHolderBox = document.querySelector('#card-holder');
 const arrayCardNumbers = [...document.querySelectorAll('.number')];
 const cardNumber = document.querySelector('#numbers');
-const cardNumberInput = document.querySelector('#card-number');
+let cardNumberInput = document.querySelector('#card-number');
 const expirationDate = document.querySelector('#expiration-date');
 const monthInput = document.querySelector('#month');
 const month = document.querySelector('#month-box');
@@ -54,8 +54,9 @@ const amExFormat = () => {
         arrayCVV.push(cvvNumberFour);
         CVVcontainer.appendChild(cvvNumberFour);
         cvvNumberInput.setAttribute('maxlength', '4');
-    } else if (cardNumberInput.value.length >= 16) {
-        cardNumberInput.value.slice(cardNumberInput.value.length - 1);
+        if (cardNumberInput.value.length >= 16) {
+            cardNumberInput.value = cardNumberInput.value.slice(0, cardNumberInput.value.length - 1);
+        }
     }
 };
 
