@@ -54,6 +54,8 @@ const amExFormat = () => {
         arrayCVV.push(cvvNumberFour);
         CVVcontainer.appendChild(cvvNumberFour);
         cvvNumberInput.setAttribute('maxlength', '4');
+    } else if (cardNumberInput.value.length >= 16) {
+        cardNumberInput.value.slice(cardNumberInput.value.length - 1);
     }
 };
 
