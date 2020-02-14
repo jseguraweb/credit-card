@@ -50,9 +50,11 @@ const amExFormat = () => {
     [number8, number12].map(el => el.classList.remove('space-right'));
     number10.classList.add('space-right');
     cardNumberInput.setAttribute('maxlength', '15');
-    arrayCVV.push(cvvNumberFour);
-    CVVcontainer.appendChild(cvvNumberFour);
-    cvvNumberInput.setAttribute('maxlength', '4');
+    if (arrayCVV.length === 3) {
+        arrayCVV.push(cvvNumberFour);
+        CVVcontainer.appendChild(cvvNumberFour);
+        cvvNumberInput.setAttribute('maxlength', '4');
+    }
 };
 
 const normalFormat = () => {
@@ -60,8 +62,11 @@ const normalFormat = () => {
     [number8, number12].map(el => el.classList.add('space-right'));
     number10.classList.remove('space-right');
     cardNumberInput.setAttribute('maxlength', '16');
-    cvvNumberFour.remove();
-    cvvNumberInput.setAttribute('maxlength', '3');
+    if (arrayCVV.length === 4) {
+        arrayCVV.pop();
+        cvvNumberFour.remove();
+        cvvNumberInput.setAttribute('maxlength', '3');
+    }
 };
 
 // select which bank your card belongs
@@ -146,8 +151,7 @@ const insertCVV = () => {
     let cvv = '';
     cvv += cvvNumberInput.value;
     cvv = cvv.split('');
-    console.log(arrayCVV);
-    
+
     for(let i = 0; i < arrayCVV.length; i++){
         if(cvv[i]) {
             arrayCVV[i].innerText = cvvNumberInput.value.charAt(i);
