@@ -1,4 +1,5 @@
 // VARIABLES
+const cardContent = document.querySelector('.card-inner')
 const card = document.querySelector('.card')
 const cardHolder = document.querySelector('#name-space');
 const cardHolderInput = document.querySelector('#name');
@@ -11,7 +12,13 @@ const monthInput = document.querySelector('#month');
 const month = document.querySelector('#month-box');
 const yearInput = document.querySelector('#year');
 const year = document.querySelector('#year-box');
-const cvvNumber = document.querySelector('#cvv-number');
+const arrayCVV = [...document.querySelectorAll('.cvv-num')];
+const CVVcontainer = document.querySelector('#card-cvv-number');
+const cvvNumber = document.querySelector('#placeholder-cvv');
+const cvvNumberFour = document.createElement('span');
+cvvNumberFour.classList.add('cvv-num');
+cvvNumberFour.appendChild(document.createTextNode('#'));
+const cvvNumberInput = document.querySelector('#cvv-number');
 const submit = document.querySelector('#submit');
 
 // variables: card numbers
@@ -19,14 +26,23 @@ const number4 = document.querySelector('#number4');
 const number8 = document.querySelector('#number8');
 const number10 = document.querySelector('#number10');
 const number12 = document.querySelector('#number12');
+const number16 = document.querySelector('#number16');
 
 // different banks stickers
-const company = document.querySelector('#company');
+const company = [...document.querySelectorAll('.company')];
 const americanExpress = '<i class="fab fa-cc-amex bank"></i>';
 const visa = '<i class="fab fa-cc-visa bank"></i>';
 const masterCard = '<i class="fab fa-cc-mastercard bank"></i>'
 
 // FUNCTIONS
+
+// rotate card
+let rotated = false;
+
+const rotateCard = () => {
+    cardContent.style.transform = 'rotateY(180deg)';
+    rotated = true;
+};
 
 // number formats in the card
 const amExFormat = () => {
@@ -34,6 +50,9 @@ const amExFormat = () => {
     [number8, number12].map(el => el.classList.remove('space-right'));
     number10.classList.add('space-right');
     cardNumberInput.setAttribute('maxlength', '15');
+    arrayCVV.push(cvvNumberFour);
+    CVVcontainer.appendChild(cvvNumberFour);
+    cvvNumberInput.setAttribute('maxlength', '4');
 };
 
 const normalFormat = () => {
@@ -41,22 +60,24 @@ const normalFormat = () => {
     [number8, number12].map(el => el.classList.add('space-right'));
     number10.classList.remove('space-right');
     cardNumberInput.setAttribute('maxlength', '16');
+    cvvNumberFour.remove();
+    cvvNumberInput.setAttribute('maxlength', '3');
 };
 
 // select which bank your card belongs
 const selectBank = (e) => {
     if (e.target.value.charAt(0) === '3' && e.target.value.charAt(1) === '4') {
         amExFormat();
-        company.innerHTML = americanExpress;
+        company.map(el => el.innerHTML = americanExpress);
     } else if (e.target.value.charAt(0) === '4') {
         normalFormat();
-        company.innerHTML = visa;
+        company.map(el => el.innerHTML = visa);
     } else if (e.target.value.charAt(0) === '5' && e.target.value.charAt(1) === '1') {
         normalFormat();
-        company.innerHTML = masterCard;
+        company.map(el => el.innerHTML = masterCard);
     } else {
         normalFormat();
-        company.innerHTML = '';
+        company.map(el => el.innerHTML = '');
     } 
 };
 
@@ -66,21 +87,24 @@ const selectPlaceholder = (event) => {
         cardNumber.classList.add('selected');
         cardHolderBox.classList.remove('selected');
         expirationDate.classList.remove('selected');
-        card.classList.remove('rotate');
-        frontsideCard();
+        if (rotated) {
+            cardContent.style.transform = 'rotateY(0deg)';
+        } 
     } else if (event.target === cardHolderInput) {
         cardHolderBox.classList.add('selected');
         expirationDate.classList.remove('selected');
         cardNumber.classList.remove('selected');
-        card.classList.remove('rotate');
-        frontsideCard();
+        if (rotated) {
+            cardContent.style.transform = 'rotateY(0deg)';
+        } 
     } else if (event.target === monthInput || event.target === yearInput) {
         expirationDate.classList.add('selected');
         cardHolderBox.classList.remove('selected');
         cardNumber.classList.remove('selected');
-        card.classList.remove('rotate');
-        frontsideCard();
-    }
+        if (rotated) {
+            cardContent.style.transform = 'rotateY(0deg)';
+        } 
+    } 
 };
 
 // insert the name in the card
@@ -112,47 +136,26 @@ const insertDate = (event) => {
     });
     if (event.target === monthInput) {
         month.innerText = monthInput.value;
-        // monthInput.value = '';
     } else if (event.target === yearInput) {
         year.innerText = (yearInput.value).substring(2);
-        // yearInput.value = '';
     }
 };
 
-// frontside card
-const frontsideCard = () => {
-    card.classList.add('frontside');
-    card.classList.remove('backside');
-    document.querySelector('#certificate').style.display = 'block';
-    document.querySelector('#numbers').style.display = 'flex';
-    document.querySelector('#card-holder').style.display = 'block';
-    document.querySelector('#expiration-date').style.display = 'block';
-};
-
-// rotate to frontside
-const rotateToFrontside = () => {
-
-};
-
-// backside card
-const backsideCard = () => {
-    card.classList.add('backside');
-    card.classList.remove('frontside');
-    document.querySelector('#certificate').style.display = 'none';
-    document.querySelector('#numbers').style.display = 'none';
-    document.querySelector('#card-holder').style.display = 'none';
-    document.querySelector('#expiration-date').style.display = 'none';
-    cvvNumber.removeEventListener('click', rotateToBackside);
-    cardHolderInput.addEventListener('click', rotateToFrontside);
-    cardNumberInput.addEventListener('click', rotateToFrontside);
-    monthInput.addEventListener('click', rotateToFrontside);
-    yearInput.addEventListener('click', rotateToFrontside);
-};
-
-// rotate to backside
-const rotateToBackside = () => {
-    card.classList.add('rotate');
-    backsideCard();
+// insert CVV number
+const insertCVV = () => {
+    let cvv = '';
+    cvv += cvvNumberInput.value;
+    cvv = cvv.split('');
+    console.log(arrayCVV);
+    
+    for(let i = 0; i < arrayCVV.length; i++){
+        if(cvv[i]) {
+            arrayCVV[i].innerText = cvvNumberInput.value.charAt(i);
+        } 
+        else {
+            arrayCVV[i].innerText = '#';
+        }
+    }
 };
 
 // Event Listener
@@ -171,7 +174,8 @@ monthInput.addEventListener('click', selectPlaceholder);
 monthInput.addEventListener('keyup', insertDate);
 yearInput.addEventListener('click', selectPlaceholder);
 yearInput.addEventListener('keyup', insertDate);
-cvvNumber.addEventListener('click', rotateToBackside);
+cvvNumberInput.addEventListener('click', rotateCard);
+cvvNumberInput.addEventListener('keyup', insertCVV);
 submit.addEventListener('click', function (e) {
     e.preventDefault();
 });

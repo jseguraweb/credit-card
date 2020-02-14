@@ -14,37 +14,52 @@
 </head>
 
 <body>
-    <div class="card frontside">
-        <div id="certificate">
-            <img id="chip" src="./img/chip.png" alt="certificate">
-        </div>
-        <div id="company">
-        </div>
-        <div id="numbers">
-            <span class="number" id="number1">#</span>
-            <span class="number" id="number2">#</span>
-            <span class="number" id="number3">#</span>
-            <span class="number space-right" id="number4">#</span>
-            <span class="number" id="number5">#</span>
-            <span class="number" id="number6">#</span>
-            <span class="number" id="number7">#</span>
-            <span class="number space-right" id="number8">#</span>
-            <span class="number" id="number9">#</span>
-            <span class="number" id="number10">#</span>
-            <span class="number" id="number11">#</span>
-            <span class="number space-right" id="number12">#</span>
-            <span class="number" id="number13">#</span>
-            <span class="number" id="number14">#</span>
-            <span class="number" id="number15">#</span>
-            <span class="number" id="number16">#</span>
-        </div>
-        <div id="card-holder">
-            <p>Card Holder</p>
-            <span id="name-space"></span>
-        </div>
-        <div id="expiration-date">
-            <p>Expires</p>
-            <span id="expiration-date-box"><span id="month-box"></span> / <span id="year-box"></span></span>
+    <div class="card">
+        <div class="card-inner">
+            <div class="frontside">
+                <div id="certificate">
+                    <img id="chip" src="./img/chip.png" alt="certificate">
+                </div>
+                <div class="company">
+                </div>
+                <div id="numbers">
+                    <span class="number" id="number1">#</span>
+                    <span class="number" id="number2">#</span>
+                    <span class="number" id="number3">#</span>
+                    <span class="number space-right" id="number4">#</span>
+                    <span class="number" id="number5">#</span>
+                    <span class="number" id="number6">#</span>
+                    <span class="number" id="number7">#</span>
+                    <span class="number space-right" id="number8">#</span>
+                    <span class="number" id="number9">#</span>
+                    <span class="number" id="number10">#</span>
+                    <span class="number" id="number11">#</span>
+                    <span class="number space-right" id="number12">#</span>
+                    <span class="number" id="number13">#</span>
+                    <span class="number" id="number14">#</span>
+                    <span class="number" id="number15">#</span>
+                    <span class="number" id="number16">#</span>
+                </div>
+                <div id="card-holder">
+                    <p>Card Holder</p>
+                    <span id="name-space"></span>
+                </div>
+                <div id="expiration-date">
+                    <p>Expires</p>
+                    <span id="expiration-date-box"><span id="month-box"></span> / <span id="year-box"></span></span>
+                </div>
+            </div>
+            <div class="backside">
+                <div id="magnetic-stripe"></div>
+                <div id="card-cvv-number">
+                    <span class="cvv-num">#</span>
+                    <span class="cvv-num">#</span>
+                    <span class="cvv-num">#</span>
+                </div>
+                <div class="company">
+
+                </div>
+            </div>
         </div>
     </div>
     <div class="container">
@@ -91,7 +106,7 @@
                 </datalist>
             </label>
             <label id="cvv-label" for="cvv-number">CVV
-                </br><input type="tel" maxlength="3" id="cvv-number" class="input">
+                </br><input type="num" maxlength="3" id="cvv-number" class="input">
             </label>
             <input id="submit" class="input" type="submit">
         </form>
